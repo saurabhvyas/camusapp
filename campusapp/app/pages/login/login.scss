@@ -1,3 +1,31 @@
+.auth-img {
+  width: 50%;
+  margin: 0 25%;
+}
+
 .login {
+    
+    background-image: url(../../bg.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+   // background-color:red;
+
+
+}
+.login form {
+  margin-bottom: 32px;
+}
+
+.login form button {
+  margin-top: 20px;
+}
+  #cta {
+
+    width:90%;
+    display:block;
+    color:red;
+
+
 
 }
