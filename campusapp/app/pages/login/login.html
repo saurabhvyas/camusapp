@@ -4,19 +4,19 @@
 <ion-content padding class="login">
   
   
-
-    <ion-item>
-      <ion-label stacked>Email</ion-label>
-      <ion-input  [(ngModel)]="email"  type="email"  ></ion-input>
+<div id="container_login">
+    <ion-item class="transparent">
+      <ion-label floating class="label_white"  >Email</ion-label>
+      <ion-input  class="label_white" [(ngModel)]="email"  type="email"  ></ion-input>
     </ion-item>
    
-
-    <ion-item>
-      <ion-label stacked>Password</ion-label>
-      <ion-input  [(ngModel)]="password"  type="password"  ></ion-input>
+<br>
+    <ion-item class="transparent">
+      <ion-label stacked class="label_white"  >Password</ion-label>
+      <ion-input  class="label_white" [(ngModel)]="password"  type="password"  ></ion-input>
     </ion-item>
  
-    
+    </div>
     <br>
 
     <button id="cta" (click)="loginUser()">
