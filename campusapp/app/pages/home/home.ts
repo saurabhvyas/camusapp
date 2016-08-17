@@ -4,7 +4,7 @@ import {NavController,PopoverController} from 'ionic-angular';
 import { AuthData } from '../../providers/auth-data/auth-data';
 import { LoginPage } from '../login/login';
 import { PopoverPage } from '../popover/popover';
-
+import { FeedPage } from '../feed/feed';
 @Component({
   templateUrl: 'build/pages/home/home.html',
   providers:[AuthData]
@@ -17,6 +17,11 @@ export class HomePage {
 
   }
   
+  gotofeed(){
+
+    this.nav.push(FeedPage);
+
+  }
   presentpopover(myEvent) {
     console.log('test');
   
