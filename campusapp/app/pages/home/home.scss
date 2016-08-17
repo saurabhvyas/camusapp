@@ -6,6 +6,49 @@
 
     
 }
+.home #more {
+
+  position:absolute;
+  top:10px;
+  right:20px;
+  font-size:2em;
+
+
+
+}
+
+.home .subheading {
+
+color:rgba(0,0,0,0.3);
+
+
+
+
+
+}
+
+.home #arrow {
+  font-size:2em;
+  margin-right:7px;
+
+  margin-left:20px;
+  margin-top:10px;
+
+
+
+}
+
+#cover_container {
+
+  
+  width:100%;
+  height:200px;
+  background-image: url('https://images.unsplash.com/photo-1467521335787-2f0fc0f0e9a0?dpr=1&auto=format&crop=entropy&fit=crop&w=767&h=454&q=80&cs=tinysrgb');
+
+  
+  color:white;
+
+}
 
 body {
 

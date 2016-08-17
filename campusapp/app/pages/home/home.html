@@ -1,15 +1,25 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+
+
+<ion-header class="home">
+<div id="cover_container">
+      
+     <ion-icon (click)="presentpopover($event)" id="more" name="more"></ion-icon>
+    <ion-icon id="arrow" name="arrow-back"></ion-icon>
+     {{username}}
+  </div>
+
 </ion-header>
 
+
+
 <ion-content padding class="home">
-  The world is your oyster.
+ 
+ <h1> {{username }} </h1>
   <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+   {{bio}}
   </p>
+
+  <h2 class="subheading"> Services </h2>
+
    <button (click)="logOut()"><ion-icon name="log-out"></ion-icon></button>
 </ion-content>
