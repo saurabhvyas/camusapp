@@ -28,12 +28,33 @@
 }
 
 .login .label_white {
-  color:white;
+   color:white;
   
 }
 
 .login .transparent {
   background-color:rgba(0,0,0,0.1);
+
+}
+
+.login ::-moz-placeholder {
+
+  color:white;
+
+}
+
+.login .logo {
+
+position:absolute;
+top:50px;
+left:10%;
+
+font-size:3em;
+font-weight: lighter;
+
+
+
+
 
 }
 
