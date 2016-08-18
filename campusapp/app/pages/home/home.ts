@@ -5,6 +5,7 @@ import { AuthData } from '../../providers/auth-data/auth-data';
 import { LoginPage } from '../login/login';
 import { PopoverPage } from '../popover/popover';
 import { FeedPage } from '../feed/feed';
+import { NewPage } from '../new/new';
 @Component({
   templateUrl: 'build/pages/home/home.html',
   providers:[AuthData]
@@ -16,7 +17,12 @@ export class HomePage {
   constructor(public nav: NavController,public authData:AuthData,private popover:PopoverController) {
 
   }
+
+  gotonewpage()
+{
+  this.nav.push(NewPage);
   
+}  
   gotofeed(){
 
     this.nav.push(FeedPage);
@@ -26,7 +32,7 @@ export class HomePage {
     console.log('test');
   
 
- var mypopover=this.popover.create(PopoverPage);
+ let mypopover=this.popover.create(PopoverPage);
 
  
  mypopover.present({
