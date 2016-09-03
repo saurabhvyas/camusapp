@@ -2,19 +2,20 @@ import {Component} from '@angular/core';
 import {NavController,PopoverController} from 'ionic-angular';
 
 import { AuthData } from '../../providers/auth-data/auth-data';
+import { Firebase } from '../../providers/firebase/firebase';
 import { LoginPage } from '../login/login';
 import { PopoverPage } from '../popover/popover';
 import { FeedPage } from '../feed/feed';
 import { NewPage } from '../new/new';
 @Component({
   templateUrl: 'build/pages/home/home.html',
-  providers:[AuthData]
+  providers:[]
 })
 export class HomePage {
 
   username:string = "Saurabh Vyas";
   bio:string="Open Source Enthusiast and UI/UX Designer , Also has great interest in Education"
-  constructor(public nav: NavController,public authData:AuthData,private popover:PopoverController) {
+  constructor(public nav: NavController,private firebase:Firebase,private popover:PopoverController) {
 
   }
 
@@ -43,8 +44,7 @@ export class HomePage {
 
   }
   logOut() {
-  this.authData.logoutUser().then(() => {
-    this.nav.setRoot(LoginPage);
-  });
+ // this.firebase.currentUser();
+  
 }
 }

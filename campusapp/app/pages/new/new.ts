@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MediaPlugin } from 'ionic-native';
-import { Camera } from 'ionic-native';
+import { Camera,File } from 'ionic-native';
+import {AuthData} from '../../providers/auth-data/auth-data';
+import {Firebase} from '../../providers/firebase/firebase';
+declare var window: any
+
 /*
   Generated class for the NewPage page.
 
@@ -10,40 +14,83 @@ import { Camera } from 'ionic-native';
 */
 @Component({
   templateUrl: 'build/pages/new/new.html',
+  
 })
 export class NewPage {
+
+  constructor(private navCtrl: NavController,private firebase:Firebase) {
+
+  
+ 
+
+  }
+
 
 takepic(){
 
 console.log('taking pic');
 
- Camera.getPicture({}).then((imageData) => {
- // imageData is either a base64 encoded string or a file URI
- // If it's base64:
- let base64Image = 'data:image/jpeg;base64,' + imageData;
+  Camera.getPicture({
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      targetWidth: 640,
+      correctOrientation: true
+}).then((imageData) => {
+
+ imageData = "file://" + imageData
 
 
-}, (err) => {
+console.log(imageData);
 
-  console.log(err);
 
- // Handle error
-});
+ window.resolveLocalFileSystemURL(imageData, (fileEntry) => { 
 
+
+ console.log(fileEntry);
+
+ fileEntry.file((resfile)=>{
+ 
+   console.log(resfile);
+
+   var reader = new FileReader();
+ reader.onloadend = (evt: any) => {
+   var imgBlob: any = new Blob([evt.target.result], { type: 'image/jpeg' });
+imgBlob.name = 'sample.jpg';
+ 
+
+ }
+
+
+ })
+
+ })
+
+
+
+ 
+
+
+
+})
+ 
 
 }
+
+/*
+
 
  start() {
      var newFile = new MediaPlugin('Music/audiofile.wav');
 newFile.startRecord();
 
 
+
  }
-  constructor(private navCtrl: NavController) {
-
   
+  */
+  
+  
+ 
 
-
-  }
 
 }

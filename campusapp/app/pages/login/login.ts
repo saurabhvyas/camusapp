@@ -13,7 +13,7 @@ import { HomePage } from '../home/home';
 */
 @Component({
   templateUrl: 'build/pages/login/login.html',
-  providers:[AuthData]
+  providers:[]
 })
 export class LoginPage {
 
@@ -25,7 +25,7 @@ export class LoginPage {
 
 
 
-  constructor(private nav: NavController,public authData: AuthData,public formBuilder: FormBuilder,
+  constructor(private nav: NavController,public formBuilder: FormBuilder,
   public alertCtrl: AlertController,public loadingCtrl: LoadingController) {
   
   
@@ -36,7 +36,7 @@ export class LoginPage {
 
 
  
-loginUser(){
+/* loginUser(){
 
 console.log(` email is ${this.email} and password is ${this.password}`);
 
@@ -59,7 +59,7 @@ console.log(` email is ${this.email} and password is ${this.password}`);
           ]
         });
         alert.present();
-        */
+     
       });
       let loading = this.loadingCtrl.create({
         dismissOnPageChange: true,
@@ -76,5 +76,7 @@ console.log(` email is ${this.email} and password is ${this.password}`);
 goToResetPassword(){
  // this.nav.push(ResetPasswordPage);
 }
-
+ */
 }
+
+  

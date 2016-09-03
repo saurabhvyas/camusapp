@@ -2,19 +2,22 @@ import {Component} from '@angular/core';
 import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {HomePage} from './pages/home/home';
+import {Firebase} from './providers/firebase/firebase';
+
 
 import {LoginPage} from './pages/login/login';
 import * as firebase from 'firebase';
 
 @Component({
-  template: '<ion-nav [root]="rootPage"></ion-nav>'
+  template: '<ion-nav [root]="rootPage"></ion-nav>',
+  providers:[Firebase]
 })
 export class MyApp {
   rootPage: any = HomePage;
 
   constructor(platform: Platform) {
 
-    var config = {
+ /*   var config = {
     apiKey: "AIzaSyDghKMAJMm5DB5OOB9ws2ZZ-eM2xKS8GCQ",
     authDomain: "elearning-a3ed2.firebaseapp.com",
     databaseURL: "https://elearning-a3ed2.firebaseio.com",
@@ -32,6 +35,9 @@ firebase.auth().onAuthStateChanged((user) => {
     this.rootPage = LoginPage;
   }
 });
+
+*/
+
 
 
     platform.ready().then(() => {
