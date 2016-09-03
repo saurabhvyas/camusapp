@@ -3,8 +3,9 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 
-declare var firebase: any;
+//declare var firebase: any;
 
+import * as firebase from 'firebase';
 
 /*
   Generated class for the Firebase provider.
@@ -36,7 +37,7 @@ myfirebase:any;
 
 
 
-this.myfirebase=firebase.initializeApp(config);
+firebase.initializeApp(config);
 
 console.log('app is initialized');
 

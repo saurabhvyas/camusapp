@@ -6,7 +6,7 @@ import {Firebase} from './providers/firebase/firebase';
 
 
 import {LoginPage} from './pages/login/login';
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
