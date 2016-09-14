@@ -28,7 +28,7 @@ myfirebase:any;
 
 
 
-       var config = {
+    var config = {
     apiKey: "AIzaSyDghKMAJMm5DB5OOB9ws2ZZ-eM2xKS8GCQ",
     authDomain: "elearning-a3ed2.firebaseapp.com",
     databaseURL: "https://elearning-a3ed2.firebaseio.com",
@@ -37,12 +37,12 @@ myfirebase:any;
 
 
 
-firebase.initializeApp(config);
+this.myfirebase=firebase.initializeApp(config);
 
 console.log('app is initialized');
 
 
-/* this.myfirebase.auth().onAuthStateChanged((user) => {
+ this.myfirebase.auth().onAuthStateChanged((user) => {
   if (user) {
     // If there's a user take him to the home page.
     console.log('used is logged in ')
@@ -57,7 +57,11 @@ console.log('app is initialized');
 
   }
 
+ loginUser(email: string, password: string): any {
+    return this.myfirebase.auth().signInWithEmailAndPassword(email, password);
 
+
+  }
   
 
 
@@ -71,33 +75,42 @@ console.log('app is initialized');
 
 
 
- uploadPhotoFromFile(imageData, progress) {
+ uploadPhotoFromFile(imageData) {
+ 
 
+ console.log('initiated image upload');
+ 
 
         
             var _time = new Date().getTime()
-            var fileRef = this.myfirebase.storage().ref('img' + _time + '.jpg')
-            var uploadTask = fileRef.put(imageData['blob']);
+            var fileRef = this.myfirebase.storage().ref('img' + _time + '.png')
+            var uploadTask = fileRef.putString(imageData ,'base64',{contentType: 'image/png'});
+
+
 
             uploadTask.on('state_changed', function (snapshot) {
-                console.log('state_changed', snapshot);
-                progress && progress(snapshot)
+                console.log('state_changed', snapshot.state);
+                
             }, function (error) {
                 console.log(JSON.stringify(error));
               
-            }, function () {
+            }, ()=> {
+
+                console.log('upload success');
+
+
                 // Handle successful uploads on complete
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                 var downloadURL = uploadTask.snapshot.downloadURL;
 
                 // Metadata now contains the metadata for file
-                fileRef.getMetadata().then(function (_metadata) {
+                fileRef.getMetadata().then( (_metadata)=> {
 
                     // save a reference to the image for listing purposes
                     var ref = this.myfirebase.database().ref('images');
                     ref.push({
                         'imageURL': downloadURL,
-                        'thumb' : imageData['thumb'],
+                        
                         'owner': this.myfirebase.auth().currentUser.uid,
                         'when': new Date().getTime(),
                         //'meta': _metadata
@@ -110,7 +123,7 @@ console.log('app is initialized');
                 });
 
             });
-    */ 
+     
  }
 
 

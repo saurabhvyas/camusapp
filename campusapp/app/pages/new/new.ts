@@ -28,44 +28,45 @@ export class NewPage {
 
 takepic(){
 
+
+
 console.log('taking pic');
 
   Camera.getPicture({
-      destinationType: Camera.DestinationType.FILE_URI,
+      destinationType: Camera.DestinationType.DATA_URL,
       sourceType: Camera.PictureSourceType.CAMERA,
+      encodingType: Camera.EncodingType.PNG,
       targetWidth: 640,
       correctOrientation: true
 }).then((imageData) => {
 
- imageData = "file://" + imageData
+// imageData = "filesystem:" + imageData ; 
 
 
-console.log(imageData);
+
+// console.log(imageData);
 
 
- window.resolveLocalFileSystemURL(imageData, (fileEntry) => { 
+
+  
+  
+  
+
+  
 
 
- console.log(fileEntry);
-
- fileEntry.file((resfile)=>{
- 
-   console.log(resfile);
-
-   var reader = new FileReader();
- reader.onloadend = (evt: any) => {
-   var imgBlob: any = new Blob([evt.target.result], { type: 'image/jpeg' });
-imgBlob.name = 'sample.jpg';
  
 
- }
+ 
+ 
+  
 
 
- })
 
- })
+   this.firebase.uploadPhotoFromFile(imageData);
 
 
+ 
 
  
 

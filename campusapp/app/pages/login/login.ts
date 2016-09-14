@@ -4,7 +4,7 @@ import { AuthData } from '../../providers/auth-data/auth-data';
 import { FormBuilder, Validators, ControlGroup } from '@angular/common';
 import { SignupPage } from '../signup/signup';
 import { HomePage } from '../home/home';
-
+import {Firebase} from '../../providers/firebase/firebase';
 /*
   Generated class for the LoginPage page.
 
@@ -26,7 +26,8 @@ export class LoginPage {
 
 
   constructor(private nav: NavController,public formBuilder: FormBuilder,
-  public alertCtrl: AlertController,public loadingCtrl: LoadingController) {
+  public alertCtrl: AlertController,public loadingCtrl: LoadingController,
+  private firebase:Firebase) {
   
   
   
@@ -36,20 +37,20 @@ export class LoginPage {
 
 
  
-/* loginUser(){
+ loginUser(){
 
 console.log(` email is ${this.email} and password is ${this.password}`);
 
    // this.submitAttempt = true;
 
   
-      this.authData.loginUser(this.email, this.password).then( authData => {
+      this.firebase.loginUser(this.email, this.password).then( authData => {
         this.nav.setRoot(HomePage);
       }, error => {
         
         console.log(`${error.message}`);
         
-        /* let alert = this.alertCtrl.create({
+         let alert = this.alertCtrl.create({
           message: error.message,
           buttons: [
             {
@@ -76,7 +77,7 @@ console.log(` email is ${this.email} and password is ${this.password}`);
 goToResetPassword(){
  // this.nav.push(ResetPasswordPage);
 }
- */
+ 
 }
 
   

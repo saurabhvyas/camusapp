@@ -16,6 +16,15 @@ export class HomePage {
   username:string = "Saurabh Vyas";
   bio:string="Open Source Enthusiast and UI/UX Designer , Also has great interest in Education"
   constructor(public nav: NavController,private firebase:Firebase,private popover:PopoverController) {
+  
+  if (this.firebase.currentUser == null ) {
+
+   console.log('redirecting to login page');
+  
+  this.nav.push(LoginPage);
+
+  }
+  
 
   }
 
@@ -44,7 +53,16 @@ export class HomePage {
 
   }
   logOut() {
- // this.firebase.currentUser();
+ this.firebase.logout().then(()=>{
+  
+  console.log('redirecting to login page');
+  
+  this.nav.push(LoginPage);
+
+
+
+ });
+
   
 }
 }
