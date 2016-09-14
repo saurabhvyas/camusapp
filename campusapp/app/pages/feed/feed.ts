@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {Firebase} from '../../providers/firebase/firebase';
 
 /*
   Generated class for the FeedPage page.
@@ -12,7 +13,32 @@ import { NavController } from 'ionic-angular';
 })
 export class FeedPage {
 
-  constructor(private navCtrl: NavController) {
+posts:any[]=[];
+
+  constructor(private navCtrl: NavController,private firebase:Firebase) {
+
+    this.firebase.getposts().on('value',(snapshot)=>{
+
+    console.log(snapshot.val());
+
+snapshot.forEach((child)=>{
+
+this.posts.push(child.val());
+
+
+});
+
+  // this.posts=Array.from(snapshot.val());
+  
+  console.log(this.posts);
+
+   
+
+
+  });
+
+
+    
 
   }
 

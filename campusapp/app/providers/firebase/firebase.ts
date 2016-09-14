@@ -63,7 +63,11 @@ console.log('app is initialized');
 
   }
   
+getposts(){
 
+    return this.myfirebase.database().ref('images/');
+    
+}
 
  currentUser() {
         return this.myfirebase.auth().currentUser
