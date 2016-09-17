@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Firebase} from '../../providers/firebase/firebase';
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the FeedPage page.
@@ -16,6 +17,13 @@ export class FeedPage {
 posts:any[]=[];
 
   constructor(private navCtrl: NavController,private firebase:Firebase) {
+
+ if (this.firebase.currentUser() == null) {
+this.navCtrl.push(LoginPage);
+
+  
+ }
+
 
     this.firebase.getposts().on('value',(snapshot)=>{
 
