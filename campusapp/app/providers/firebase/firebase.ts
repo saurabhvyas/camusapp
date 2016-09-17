@@ -69,6 +69,10 @@ getposts(){
 
 }
 
+createUser(username:any,password:any) {
+
+    return this.myfirebase.auth().createUserWithEmailAndPassword(username,password)
+}
  currentUser() {
         return this.myfirebase.auth().currentUser
     }
@@ -116,7 +120,9 @@ getposts(){
                         'imageURL': downloadURL,
                         'title':title,
                         "description":description,
+                        "owner_img":"test_url",
                         'owner': this.myfirebase.auth().currentUser.uid,
+                        "owner_name":"test user",
                         'when': new Date().getTime(),
                         //'meta': _metadata
                     });

@@ -32,7 +32,20 @@ this.navCtrl.push(LoginPage);
 
 snapshot.forEach((child)=>{
 
-this.posts.push(child.val());
+let date = new Date(child.val().when);
+
+// console.log(date.toISOString().substring(0,10));
+
+
+this.posts.push({
+  
+  imageURL:child.val().imageURL,
+  when:date.toISOString().substring(0,10),
+  owner:child.val().owner,
+  description:child.val().description,
+  title:child.val().title
+
+});
 
 
 });

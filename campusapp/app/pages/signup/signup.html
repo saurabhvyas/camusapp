@@ -15,4 +15,31 @@
 
 <ion-content padding>
 
+    <ion-item white class="transparent" >
+      
+      <ion-input white class="label_white" placeholder="username" [(ngModel)]="username"  type="email"  ></ion-input>
+    </ion-item>
+
+    <br>
+
+   <ion-item white class="transparent" >
+      
+      <ion-input white class="label_white" placeholder="email" [(ngModel)]="email"  type="email"  ></ion-input>
+    </ion-item>
+   
+<br>
+    <ion-item class="transparent">
+     
+      <ion-input   class="label_white" [(ngModel)]="password" placeholder="Password" type="password"  ></ion-input>
+    </ion-item>
+ 
+    
+    <br>
+
+    <button id="cta" (click)="SignUpUser()">
+      Sign In
+    </button>
+
+
+
 </ion-content>
