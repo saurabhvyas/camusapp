@@ -16,7 +16,7 @@ export class FeedPage {
 
 posts:any[]=[];
 
-  constructor(private navCtrl: NavController,private firebase:Firebase) {
+  constructor(public navCtrl: NavController,private firebase:Firebase) {
 
  if (this.firebase.currentUser() == null) {
 this.navCtrl.push(LoginPage);

@@ -26,7 +26,7 @@ export class HomePage {
   }
   else {
 
-    console.log(`current user is ${this.firebase.currentUser}`);
+    console.log(`current user is ${this.firebase.currentUser()}`);
 
   }
   
