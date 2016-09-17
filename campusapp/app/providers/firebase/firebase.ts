@@ -69,6 +69,11 @@ getposts(){
 
 }
 
+getdata(location:string){
+
+    return this.myfirebase.database().ref(location + "/")
+}
+
 createUser(username:any,password:any) {
 
     return this.myfirebase.auth().createUserWithEmailAndPassword(username,password)

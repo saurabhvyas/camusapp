@@ -43,7 +43,8 @@ this.posts.push({
   when:date.toISOString().substring(0,10),
   owner:child.val().owner,
   description:child.val().description,
-  title:child.val().title
+  title:child.val().title,
+  
 
 });
 

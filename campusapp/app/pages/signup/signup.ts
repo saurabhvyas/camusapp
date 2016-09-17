@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Firebase} from '../../providers/firebase/firebase';
+import { Camera,File } from 'ionic-native';
 
 /*
   Generated class for the SignupPage page.
@@ -16,10 +17,35 @@ export class SignupPage {
   username:any;
   email:any;
   password:any;
+  thumb_base64:any;
+
 
 
   constructor(private navCtrl: NavController,private firebase:Firebase) {
    
+  }
+
+  takethumb() {
+   
+   console.log('taking pic');
+
+  Camera.getPicture({
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      encodingType: Camera.EncodingType.PNG,
+      targetWidth: 64,
+      correctOrientation: true
+}).then((imageData) => {
+
+this.thumb_base64=imageData;
+
+
+
+},(err)=>{
+  console.log(err);
+
+});
+
   }
 
   SignUpUser() {
@@ -33,7 +59,28 @@ export class SignupPage {
     `);
 
      
-     this.firebase.createUser(this.email,this.password).then(()=>{
+     this.firebase.createUser(this.email,this.password).then((user)=>{
+  
+  // make this function return a promise
+ // this.firebase.uploadPhotoFromFile(this.thumb_base64,"user thumb","thumnail of user during signup");
+
+
+        
+      // create a ref to user and add email as well as his username 
+      
+      this.firebase.getdata('UserProfile/ ' + user.uid).update({username:this.username,photoURL:"test_url"}).then(()=>{
+
+
+         console.log('user profile update success');
+         
+           
+      },(err)=>{
+            
+            console.log(err.code);
+
+
+      });
+
 
        console.log('signup success');
 
