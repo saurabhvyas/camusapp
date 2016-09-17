@@ -17,7 +17,10 @@ export class HomePage {
   bio:string="Open Source Enthusiast and UI/UX Designer , Also has great interest in Education"
   constructor(public nav: NavController,private firebase:Firebase,private popover:PopoverController) {
   
-  if (this.firebase.currentUser() == null ) {
+
+  // this code breaks navcontroller 
+  
+ /*  if (this.firebase.currentUser() == null ) {
 
    console.log('redirecting to login page');
   
@@ -30,6 +33,7 @@ export class HomePage {
 
   }
   
+  */
 
   }
 

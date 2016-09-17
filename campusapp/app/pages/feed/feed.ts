@@ -16,14 +16,15 @@ export class FeedPage {
 
 posts:any[]=[];
 
-  constructor(public navCtrl: NavController,private firebase:Firebase) {
+  constructor(private navCtrl: NavController,private firebase:Firebase) {
 
- if (this.firebase.currentUser() == null) {
+/* if (this.firebase.currentUser() == null) {
 this.navCtrl.push(LoginPage);
 
   
  }
 
+*/
 
     this.firebase.getposts().on('value',(snapshot)=>{
 
