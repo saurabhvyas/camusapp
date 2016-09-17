@@ -18,6 +18,10 @@ declare var window: any
 })
 export class NewPage {
 
+  title:string="";
+  description:string="";
+
+
   constructor(private navCtrl: NavController,private firebase:Firebase) {
 
   
@@ -29,6 +33,7 @@ export class NewPage {
 takepic(){
 
 
+console.log(` title is ${this.title} & description is ${this.description}`);
 
 console.log('taking pic');
 
@@ -63,7 +68,7 @@ console.log('taking pic');
 
 
 
-   this.firebase.uploadPhotoFromFile(imageData);
+   this.firebase.uploadPhotoFromFile(imageData,this.title,this.description);
 
 
  

@@ -66,7 +66,7 @@ console.log('app is initialized');
 getposts(){
 
     return this.myfirebase.database().ref('images/');
-    
+
 }
 
  currentUser() {
@@ -79,7 +79,7 @@ getposts(){
 
 
 
- uploadPhotoFromFile(imageData) {
+ uploadPhotoFromFile(imageData:any,title:string,description:string) {
  
 
  console.log('initiated image upload');
@@ -114,7 +114,8 @@ getposts(){
                     var ref = this.myfirebase.database().ref('images');
                     ref.push({
                         'imageURL': downloadURL,
-                        
+                        'title':title,
+                        "description":description,
                         'owner': this.myfirebase.auth().currentUser.uid,
                         'when': new Date().getTime(),
                         //'meta': _metadata
