@@ -49,6 +49,7 @@ console.log('taking pic');
 
 
 
+
 // console.log(imageData);
 
 
