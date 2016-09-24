@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,LoadingController, AlertController } from 'ionic-angular';
+import { NavController,LoadingController, AlertController ,NavParams} from 'ionic-angular';
 import { AuthData } from '../../providers/auth-data/auth-data';
 import { FormBuilder, Validators, ControlGroup } from '@angular/common';
 import { SignupPage } from '../signup/signup';
@@ -21,6 +21,8 @@ export class LoginPage {
    submitAttempt: boolean = false;
    email:any="";
    password:any="";
+
+  user_id:any="";
 
 
 

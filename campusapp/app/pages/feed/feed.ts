@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Firebase} from '../../providers/firebase/firebase';
 import { LoginPage } from '../login/login';
+import { HomePage } from '../home/home';
 
 /*
   Generated class for the FeedPage page.
@@ -15,6 +16,15 @@ import { LoginPage } from '../login/login';
 export class FeedPage {
 
 posts:any[]=[];
+
+gotoProfile(user_id :any,username:any ) {
+this.navCtrl.push(HomePage,{
+  
+  "id":user_id,
+"username":username});
+
+
+}
 
   constructor(private navCtrl: NavController,private firebase:Firebase) {
 
@@ -43,6 +53,7 @@ this.posts.push({
   when:date.toISOString().substring(0,10),
   owner_name:child.val().owner_name,
   owner_img:child.val().owner_img,
+  owner:child.val().owner,
   description:child.val().description,
   title:child.val().title,
   

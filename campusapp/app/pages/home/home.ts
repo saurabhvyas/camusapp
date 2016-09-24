@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController,PopoverController} from 'ionic-angular';
+import {NavController,PopoverController,NavParams} from 'ionic-angular';
 
 import { AuthData } from '../../providers/auth-data/auth-data';
 import { Firebase } from '../../providers/firebase/firebase';
@@ -14,8 +14,11 @@ import { NewPage } from '../new/new';
 export class HomePage {
 
   username:string = "Saurabh Vyas";
-  bio:string="Open Source Enthusiast and UI/UX Designer , Also has great interest in Education"
-  constructor(public nav: NavController,private firebase:Firebase,private popover:PopoverController) {
+  bio:string="Open Source Enthusiast and UI/UX Designer , Also has great interest in Education";
+
+  user_id:any="";
+
+  constructor(public nav: NavController,private firebase:Firebase,private popover:PopoverController,private params:NavParams) {
   
 
   // this code breaks navcontroller 
@@ -36,6 +39,15 @@ export class HomePage {
   */
 
   }
+
+  ionViewDidEnter() {
+
+    console.log('view entered ');
+ this.user_id=this.params.get('id');
+ this.username=this.params.get('username');
+
+
+}
 
   gotonewpage()
 {
