@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,LoadingController } from 'ionic-angular';
 import {Firebase} from '../../providers/firebase/firebase';
 import { Camera,File } from 'ionic-native';
 
@@ -21,7 +21,7 @@ export class SignupPage {
 
 
 
-  constructor(private navCtrl: NavController,private firebase:Firebase) {
+  constructor(private navCtrl: NavController,private loadCtrl:LoadingController,private firebase:Firebase) {
    
   }
 
@@ -50,6 +50,10 @@ this.thumb_base64=imageData;
 
   SignUpUser() {
 
+        let loading = this.loadCtrl.create({content: 'Signing Up...'});
+
+        loading.present();
+
     console.log(` username : ${this.username} 
     
     email : ${this.email}
@@ -62,27 +66,63 @@ this.thumb_base64=imageData;
      this.firebase.createUser(this.email,this.password).then((user)=>{
   
   // make this function return a promise
- // this.firebase.uploadPhotoFromFile(this.thumb_base64,"user thumb","thumnail of user during signup");
+  this.firebase.uploadPhotoFromFile(this.thumb_base64).then((snapshot)=>{
+
+console.log(`user thumb uploaded`);
 
 
-        
-      // create a ref to user and add email as well as his username 
-      
-      this.firebase.getdata('UserProfile/ ' + user.uid).update({username:this.username,photoURL:"test_url"}).then(()=>{
 
+
+
+ // create a ref to user and add email as well as his username 
+
+ console.log(snapshot.downloadURL);
+ 
+
+user.updateProfile({
+  displayName: this.username,
+  photoURL: snapshot.downloadURL
+}).then(function() {
+  // Update successful.
+
+  
+
+           loading.dismiss(); 
 
          console.log('user profile update success');
          
+          console.log('signup success');
            
-      },(err)=>{
-            
-            console.log(err.code);
+     
 
 
-      });
+  }
+  ,(err)=>{
+
+console.log(err.code);
 
 
-       console.log('signup success');
+
+  });
+
+
+
+}, function(error) {
+  // An error happened.
+
+  console.log(error.code);
+  
+});
+
+
+      
+     
+
+        
+     
+
+
+      
 
 
 

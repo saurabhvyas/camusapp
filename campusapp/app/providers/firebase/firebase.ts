@@ -88,7 +88,7 @@ createUser(username:any,password:any) {
 
 
 
- uploadPhotoFromFile(imageData:any,title:string,description:string) {
+ uploadPhotoFromFile(imageData:any) {
  
 
  console.log('initiated image upload');
@@ -97,50 +97,13 @@ createUser(username:any,password:any) {
         
             var _time = new Date().getTime()
             var fileRef = this.myfirebase.storage().ref('img' + _time + '.png')
-            var uploadTask = fileRef.putString(imageData ,'base64',{contentType: 'image/png'});
+            
+           let   uploadTask = fileRef.putString(imageData ,'base64',{contentType: 'image/png'});
+               
+               return uploadTask
 
-
-
-            uploadTask.on('state_changed', function (snapshot) {
-                console.log('state_changed', snapshot.state);
-                
-            }, function (error) {
-                console.log(JSON.stringify(error));
-              
-            }, ()=> {
-
-                console.log('upload success');
-
-
-                // Handle successful uploads on complete
-                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                var downloadURL = uploadTask.snapshot.downloadURL;
-
-                // Metadata now contains the metadata for file
-                fileRef.getMetadata().then( (_metadata)=> {
-
-                    // save a reference to the image for listing purposes
-                    var ref = this.myfirebase.database().ref('images');
-                    ref.push({
-                        'imageURL': downloadURL,
-                        'title':title,
-                        "description":description,
-                        "owner_img":"test_url",
-                        'owner': this.myfirebase.auth().currentUser.uid,
-                        "owner_name":"test user",
-                        'when': new Date().getTime(),
-                        //'meta': _metadata
-                    });
-                   
-                }).catch(function (error) {
-                    // Uh-oh, an error occurred!
-                 console.log(error);
-
-                });
-
-            });
-     
  }
+           
 
 
 }

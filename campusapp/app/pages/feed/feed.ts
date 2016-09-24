@@ -41,7 +41,8 @@ this.posts.push({
   
   imageURL:child.val().imageURL,
   when:date.toISOString().substring(0,10),
-  owner:child.val().owner,
+  owner_name:child.val().owner_name,
+  owner_img:child.val().owner_img,
   description:child.val().description,
   title:child.val().title,
   

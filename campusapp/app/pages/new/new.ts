@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,LoadingController } from 'ionic-angular';
 import { MediaPlugin } from 'ionic-native';
 import { Camera,File } from 'ionic-native';
 import {AuthData} from '../../providers/auth-data/auth-data';
@@ -22,7 +22,7 @@ export class NewPage {
   description:string="";
 
 
-  constructor(private navCtrl: NavController,private firebase:Firebase) {
+  constructor(private navCtrl: NavController,private loadCtrl:LoadingController,  private firebase:Firebase) {
 
   
  
@@ -69,7 +69,68 @@ console.log('taking pic');
 
 
 
-   this.firebase.uploadPhotoFromFile(imageData,this.title,this.description);
+   this.firebase.uploadPhotoFromFile(imageData).then((snapshot)=>{
+    
+
+      
+
+                console.log('image upload success');
+
+
+               
+                var downloadURL = snapshot.downloadURL;
+
+                console.log(` ${this.firebase.currentUser().photoURL} , ${this.firebase.currentUser().displayName}`);
+                
+
+                this.firebase.getdata('images').push({
+
+                  'imageURL': downloadURL,
+                        'title':this.title,
+                        'description':this.description,
+                        'owner_img':this.firebase.currentUser().photoURL,
+                        'owner': this.firebase.currentUser().uid,
+                        'owner_name':this.firebase.currentUser().displayName,
+                        'when': new Date().getTime(),
+
+                }).then(()=>{
+
+                  console.log('data node created for newly uploaded image');
+                  
+
+                },(err)=>{
+
+                  console.log(err.code);
+
+                })
+
+
+                // Metadata now contains the metadata for file
+              /*  
+
+                    // save a reference to the image for listing purposes
+                    var ref = this.myfirebase.database().ref('images');
+                    ref.push({
+                        
+                        
+                    });
+                   
+                }).catch(function (error) {
+                    // Uh-oh, an error occurred!
+                 console.log(error);
+
+                });
+
+            
+
+            */
+     
+ 
+
+   },(err)=>{
+     console.log(err);
+
+   })
 
 
  
