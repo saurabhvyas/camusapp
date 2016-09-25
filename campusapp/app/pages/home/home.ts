@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component,AfterViewInit} from '@angular/core';
 import {NavController,PopoverController,NavParams} from 'ionic-angular';
 
 import { AuthData } from '../../providers/auth-data/auth-data';
@@ -11,15 +11,50 @@ import { NewPage } from '../new/new';
   templateUrl: 'build/pages/home/home.html',
   providers:[]
 })
-export class HomePage {
+export class HomePage implements AfterViewInit{
 
   username:string = "Saurabh Vyas";
   bio:string="Open Source Enthusiast and UI/UX Designer , Also has great interest in Education";
+  editmode:boolean=false;
 
+
+ngAfterViewInit() {
+
+// let user = this.firebase.currentUser();
+
+
+
+
+
+}
   user_id:any="";
 
   constructor(public nav: NavController,private firebase:Firebase,private popover:PopoverController,private params:NavParams) {
   
+  console.log('home constructor called');
+
+  this.user_id=this.params.get('id');
+ this.username=this.params.get('username');
+
+ 
+this.firebase.myfirebase.auth().onAuthStateChanged((user)=> {
+  if (user) {
+    // User is signed in.
+
+     this.user_id=user.uid;
+     this.username=user.displayName;
+
+console.log(this.username);
+
+
+
+  } else {
+    // No user is signed in.
+  }
+});
+
+
+
 
   // this code breaks navcontroller 
   
@@ -40,14 +75,14 @@ export class HomePage {
 
   }
 
-  ionViewDidEnter() {
 
-    console.log('view entered ');
- this.user_id=this.params.get('id');
- this.username=this.params.get('username');
+ 
+
+ //console.log(this.username);
+ //console.log(this.user_id);
 
 
-}
+
 
   gotonewpage()
 {

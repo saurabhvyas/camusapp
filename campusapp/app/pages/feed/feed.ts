@@ -21,7 +21,12 @@ gotoProfile(user_id :any,username:any ) {
 this.navCtrl.push(HomePage,{
   
   "id":user_id,
-"username":username});
+"username":username}).catch((reason)=>{
+
+console.log(reason);
+
+
+});
 
 
 }
