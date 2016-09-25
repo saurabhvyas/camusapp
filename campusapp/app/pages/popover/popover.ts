@@ -16,4 +16,8 @@ export class PopoverPage {
 
   }
 
+   close() {
+      this.viewCtrl.dismiss();
+    }
+
 }

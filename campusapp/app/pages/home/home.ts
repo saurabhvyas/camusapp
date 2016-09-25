@@ -31,7 +31,7 @@ ngAfterViewInit() {
 }
   user_id:any;
 
-  constructor(public nav: NavController,private firebase:Firebase,private popover:PopoverController,private params:NavParams) {
+  constructor(public nav: NavController,private firebase:Firebase,public popover:PopoverController,private params:NavParams) {
   
   console.log('home constructor called');
 

@@ -3,7 +3,11 @@
 <ion-header class="home">
 <div id="cover_container">
       
-     <ion-icon (click)="presentpopover($event)" id="more" name="more"></ion-icon>
+
+       <button id ="more_btn" ion-button (click)="presentpopover($event)">
+     <ion-icon  id="more" name="more"> </ion-icon>
+
+       </button>
     <ion-icon id="arrow" name="arrow-back"></ion-icon>
      {{username}}
   </div>
