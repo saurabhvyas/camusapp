@@ -16,6 +16,8 @@ export class HomePage implements AfterViewInit{
   username:string = "Saurabh Vyas";
   bio:string="Open Source Enthusiast and UI/UX Designer , Also has great interest in Education";
   editmode:boolean=false;
+  first_signin_trigger:boolean=false;
+
 
 
 ngAfterViewInit() {
@@ -27,7 +29,7 @@ ngAfterViewInit() {
 
 
 }
-  user_id:any="";
+  user_id:any;
 
   constructor(public nav: NavController,private firebase:Firebase,private popover:PopoverController,private params:NavParams) {
   
@@ -43,6 +45,8 @@ this.firebase.myfirebase.auth().onAuthStateChanged((user)=> {
 
      this.user_id=user.uid;
      this.username=user.displayName;
+     this.first_signin_trigger=true;
+
 
 console.log(this.username);
 
@@ -53,6 +57,11 @@ console.log(this.username);
 this.user_id=null;
 this.username="";
 
+  if(this.first_signin_trigger===true) {
+
+    this.nav.push(LoginPage);
+
+  }
   
   }
 });
@@ -113,16 +122,35 @@ this.username="";
 
   }
   logOut() {
- this.firebase.logout().then(()=>{
+
+  if(this.user_id!==null) {
+
+
+this.firebase.logout().then(()=>{
   
   console.log('redirecting to login page');
   
-  this.nav.push(LoginPage);
+  this.nav.push(LoginPage).catch((reason)=>{
+    console.log(reason);
+
+  })
 
 
 
  });
 
   
+} 
+
+else {
+
+    this.nav.push(LoginPage).catch((reason)=>{
+    console.log(reason);
+
+  })
 }
+  
+
+  }
+ 
 }

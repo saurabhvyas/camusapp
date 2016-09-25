@@ -29,6 +29,10 @@
     <button id="cta" (click)="goToSignup()">
       Sign Up
     </button>
+
+    <div id="err_message" *ngIf="err">
+     {{err_message}}
+    </div>
   
 
 </ion-content>

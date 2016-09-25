@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,LoadingController, AlertController ,NavParams} from 'ionic-angular';
+import { NavController,LoadingController, AlertController ,NavParams,ViewController} from 'ionic-angular';
 import { AuthData } from '../../providers/auth-data/auth-data';
 import { FormBuilder, Validators, ControlGroup } from '@angular/common';
 import { SignupPage } from '../signup/signup';
@@ -23,16 +23,41 @@ export class LoginPage {
    password:any="";
 
   user_id:any="";
+  err:boolean=false;
+  err_message:string="";
+
 
 
 
 
   constructor(private nav: NavController,public formBuilder: FormBuilder,
   public alertCtrl: AlertController,public loadingCtrl: LoadingController,
-  private firebase:Firebase) {
+  private firebase:Firebase,private viewCtrl:ViewController) {
   
   
-  
+  this.firebase.myfirebase.auth().onAuthStateChanged((user)=> {
+  if (user) {
+    // User is signed in.
+
+
+  this.nav.push(HomePage,{
+    id:this.firebase.currentUser().uid,
+    username:this.firebase.currentUser().displayName
+  });
+
+   
+
+
+
+
+  } 
+
+  else {
+
+
+  }
+
+  });
 
   }
 
@@ -44,30 +69,37 @@ export class LoginPage {
 console.log(` email is ${this.email} and password is ${this.password}`);
 
    // this.submitAttempt = true;
-
+ 
   
+
       this.firebase.loginUser(this.email, this.password).then( authData => {
         this.nav.setRoot(HomePage);
-      }, error => {
-        
-        console.log(`${error.message}`);
-        
-         let alert = this.alertCtrl.create({
-          message: error.message,
-          buttons: [
-            {
-              text: "Ok",
-              role: 'cancel'
-            }
-          ]
-        });
-        alert.present();
-     
-      });
-      let loading = this.loadingCtrl.create({
+
+        let loading = this.loadingCtrl.create({
         dismissOnPageChange: true,
       });
       loading.present();
+
+        
+      }, error => {
+        
+      
+         this.err=true;
+         this.err_message=error.message;
+
+        console.log(`${error.message}`);
+        
+        
+      
+        
+     
+      });
+      
+     
+         
+        
+     
+        
     
   }
 

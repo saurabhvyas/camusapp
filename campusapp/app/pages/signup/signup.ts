@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController,LoadingController } from 'ionic-angular';
 import {Firebase} from '../../providers/firebase/firebase';
 import { Camera,File } from 'ionic-native';
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the SignupPage page.
@@ -82,16 +83,22 @@ console.log(`user thumb uploaded`);
 user.updateProfile({
   displayName: this.username,
   photoURL: snapshot.downloadURL
-}).then(function() {
+}).then(()=> {
   // Update successful.
 
-  
-
-           loading.dismiss(); 
-
-         console.log('user profile update success');
+    console.log('user profile update success');
          
           console.log('signup success');
+
+           loading.dismiss().then(()=>{
+             
+             this.navCtrl.push(LoginPage);
+
+
+           });
+
+       
+           
            
      
 

@@ -13,7 +13,7 @@ import {LoginPage} from './pages/login/login';
   providers:[Firebase]
 })
 export class MyApp {
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   constructor(platform: Platform) {
 
