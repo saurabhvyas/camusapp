@@ -50,6 +50,10 @@ console.log(this.username);
 
   } else {
     // No user is signed in.
+this.user_id=null;
+this.username="";
+
+  
   }
 });
 
