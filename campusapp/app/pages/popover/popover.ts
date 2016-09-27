@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,ViewController } from 'ionic-angular';
+import { Firebase } from '../../providers/firebase/firebase';
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the PopoverPage page.
@@ -12,12 +14,31 @@ import { NavController,ViewController } from 'ionic-angular';
 })
 export class PopoverPage {
 
-  constructor(private navCtrl: NavController,private viewCtrl: ViewController) {
+  constructor(private navCtrl: NavController,private viewCtrl: ViewController,private firebase:Firebase) {
 
   }
 
    close() {
-      this.viewCtrl.dismiss();
+     // this.viewCtrl.dismiss();
+
+if(this.firebase.currentUser !==null) {
+
+
+this.firebase.logout().then(()=>{
+  
+  console.log('redirecting to login page');
+  
+  this.navCtrl.push(LoginPage).catch((reason)=>{
+    console.log(reason);
+
+  })
+
+
+
+ });
+
+
     }
+   }
 
 }

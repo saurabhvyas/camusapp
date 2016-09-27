@@ -73,13 +73,22 @@ console.log(` email is ${this.email} and password is ${this.password}`);
   
 
       this.firebase.loginUser(this.email, this.password).then( authData => {
-        this.nav.setRoot(HomePage);
+     
+
 
         let loading = this.loadingCtrl.create({
-        dismissOnPageChange: true,
+       // dismissOnPageChange: true,
       });
       loading.present();
 
+
+   this.nav.setRoot(HomePage).then(()=>{
+          
+          loading.dismiss();
+          
+          
+
+        });
         
       }, error => {
         
