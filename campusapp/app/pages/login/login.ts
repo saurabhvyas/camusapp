@@ -5,6 +5,7 @@ import { FormBuilder, Validators, ControlGroup } from '@angular/common';
 import { SignupPage } from '../signup/signup';
 import { HomePage } from '../home/home';
 import {Firebase} from '../../providers/firebase/firebase';
+import { ToastController } from 'ionic-angular';
 /*
   Generated class for the LoginPage page.
 
@@ -23,16 +24,14 @@ export class LoginPage {
    password:any="";
 
   user_id:any="";
-  err:boolean=false;
-  err_message:string="";
-
+ 
 
 
 
 
   constructor(private nav: NavController,public formBuilder: FormBuilder,
   public alertCtrl: AlertController,public loadingCtrl: LoadingController,
-  private firebase:Firebase,private viewCtrl:ViewController) {
+  private firebase:Firebase,private viewCtrl:ViewController,public toastCtrl: ToastController) {
   
   
   this.firebase.myfirebase.auth().onAuthStateChanged((user)=> {
@@ -93,11 +92,15 @@ console.log(` email is ${this.email} and password is ${this.password}`);
       }, error => {
         
       
-         this.err=true;
-         this.err_message=error.message;
-
-        console.log(`${error.message}`);
+   
         
+        
+         let toast = this.toastCtrl.create({
+      message: error.message,
+      duration: 3000
+    });
+
+    toast.present();
         
       
         
