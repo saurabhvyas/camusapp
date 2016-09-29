@@ -6,15 +6,15 @@
   <h1 class="logo"> Orange - Campus </h1>
   
 <div white id="container_login">
-    <ion-item white class="transparent" >
+    <ion-item  white class="transparent test1" >
       
-      <ion-input white class="label_white" placeholder="email" [(ngModel)]="email"  type="email"  ></ion-input>
+      <ion-input  class="label_white" placeholder="email" [(ngModel)]="email"  type="email"  ></ion-input>
     </ion-item>
    
 <br>
-    <ion-item class="transparent">
+    <ion-item class="transparent test2">
      
-      <ion-input   class="label_white" [(ngModel)]="password" placeholder="Password" type="password"  ></ion-input>
+      <ion-input   class="label_white " [(ngModel)]="password" placeholder="Password" type="password"  ></ion-input>
     </ion-item>
  
     </div>
@@ -24,11 +24,11 @@
       Sign In
     </button>
 
-   <h1 white > Or </h1>
-
-    <button id="cta" (click)="goToSignup()">
+   <h1 white class="signup" > Or    <a class="link" (click)="goToSignup()">
       Sign Up
-    </button>
+    </a> </h1>
+
+
 
     <div id="err_message" *ngIf="err">
      {{err_message}}
