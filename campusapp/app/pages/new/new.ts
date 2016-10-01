@@ -22,6 +22,8 @@ export class NewPage {
   description:string="";
 
 
+
+
   constructor(private navCtrl: NavController,private loadCtrl:LoadingController,  private firebase:Firebase) {
 
   
