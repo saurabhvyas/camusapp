@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar primary>
     <ion-title>New Question</ion-title>
   </ion-navbar>
 
@@ -15,31 +15,29 @@
 
 <ion-content padding >
 
-<ion-list>
-  <ion-item>
-    <ion-label primary>Title</ion-label>
-    <ion-input [(ngModel)]="title" placeholder="Text Input"></ion-input>
+
+  <ion-item class="title">
+   
+    <ion-input [(ngModel)]="title" placeholder="Title"></ion-input>
   </ion-item>
 
-  <ion-item>
-   <ion-label primary>Description</ion-label>
-    <ion-textarea [(ngModel)]="description" ></ion-textarea>
+  <ion-item class="description">
+  
+    <ion-textarea [(ngModel)]="description" placeholder="Description" ></ion-textarea>
 
     </ion-item>
 
 
 
-</ion-list>
-test
-<h2> Actions  </h2>
 
-<button (click)="takepic()" id="camera">
- <ion-icon  name="camera"></ion-icon>
+
+
+
+<button primary  class="cta" (click)="takepic()" >
+ Select Photo 
 </button>
 
-<button (click)="start()" id="mic">
- <ion-icon  name="mic"></ion-icon>
-</button>
+
 
 
 
