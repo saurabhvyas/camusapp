@@ -20,66 +20,16 @@ export class NewPage {
 
   title:string="";
   description:string="";
+  imgdata:any;
 
-
-
-
-  constructor(private navCtrl: NavController,private loadCtrl:LoadingController,  private firebase:Firebase) {
-
-  
- 
-
-  }
-
-
-takepic(){
-
-
-console.log(` title is ${this.title} & description is ${this.description}`);
-
-console.log('taking pic');
-
-  Camera.getPicture({
-      destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.CAMERA,
-      encodingType: Camera.EncodingType.PNG,
-      targetWidth: 640,
-      correctOrientation: true
-}).then((imageData) => {
-
-// imageData = "filesystem:" + imageData ; 
-
-
-
-
-// console.log(imageData);
-
-
-
-  
-  
-  
+upload_img() {
 
   
 
-
- 
-
- 
- 
-  
-
-
-
-   this.firebase.uploadPhotoFromFile(imageData).then((snapshot)=>{
+   this.firebase.uploadPhotoFromFile(this.imgdata).then((snapshot)=>{
     
-
-      
-
                 console.log('image upload success');
-
-
-               
+                
                 var downloadURL = snapshot.downloadURL;
 
                 console.log(` ${this.firebase.currentUser().photoURL} , ${this.firebase.currentUser().displayName}`);
@@ -135,9 +85,45 @@ console.log('taking pic');
    })
 
 
+}
+
+
+
+  constructor(private navCtrl: NavController,private loadCtrl:LoadingController,  private firebase:Firebase) {
+
+  
  
 
- 
+  }
+
+
+takepic(){
+
+
+console.log(` title is ${this.title} & description is ${this.description}`);
+
+console.log('taking pic');
+
+  Camera.getPicture({
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      encodingType: Camera.EncodingType.PNG,
+      targetWidth: 640,
+      correctOrientation: true
+}).then((imageData) => {
+
+// imageData = "filesystem:" + imageData ; 
+
+this.imgdata=imageData;
+
+
+
+// console.log(imageData);
+
+
+
+  
+
 
 
 

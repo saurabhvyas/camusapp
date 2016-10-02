@@ -8,7 +8,7 @@
 
   <ion-navbar primary>
     <ion-title>New Question</ion-title>
-     <button ion-button class="send_btn"> <ion-icon (click)="takepic()" class="send_icon"  name="send"></ion-icon>
+     <button ion-button  (click)="upload_img()" class="send_btn"> <ion-icon  class="send_icon"  name="send"></ion-icon>
 
      </button>
   </ion-navbar>
@@ -26,16 +26,19 @@
 
   <ion-item class="description">
   
-    <ion-textarea  [(ngModel)]="description" placeholder="Description" ></ion-textarea>
+    <ion-textarea rows="6" [(ngModel)]="description" placeholder="Description" ></ion-textarea>
 
     </ion-item>
 
 
+    <a href="" class="img_btn" (click)="takepic()">
+  <ion-icon   primary  class="img_icon" name="camera"></ion-icon>
 
 
+    
 
 
-
+    </a>
 
 
 
